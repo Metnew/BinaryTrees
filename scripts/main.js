@@ -3,7 +3,7 @@
 	var paragNode = document.querySelector('h4.docs-header');
 	var textNode = document.querySelector('h6');
 	var picture = document.querySelector('div.seven.columns');
-
+	var info = document.querySelector('div.five.columns');
 	function Node(parag, text, leftNode, rightNode) {
 		this.leftNode = leftNode;
 		this.rightNode = rightNode;
@@ -12,10 +12,10 @@
 	}
 
 	var UsefulLinks = new Node('Useful links');
-	UsefulLinks.text = '<li>If you don\'t understand binary trees, check another branches.</li><li>However, if this tutorial structure will be graph instead of tree, it be easier.</li><li>Also, there is one interesting <a href="http://cslibrary.stanford.edu/110/BinaryTrees.pdf">book</a> about binary trees with algoritmics and exercises on C++.</li>';
+	UsefulLinks.text = '<li>If you don\'t understand binary trees now, check another branches.</li><li>However, if this tutorial structure will be graph instead of tree, it be easier.</li><li>Also, there is one interesting <a href="http://cslibrary.stanford.edu/110/BinaryTrees.pdf">book</a> about binary trees with algoritmics and exercises on C++.</li>';
 
 	var FinishCodeOper = new Node('Finish course');
-	FinishCodeOper.text = '<li>If you don\'t understand binary trees, check another branches.</li><li>Also, there is one interesting <a href="http://cslibrary.stanford.edu/110/BinaryTrees.pdf">book</a> about binary trees with algoritmics and exercises written on C++ and Java</li>';
+	FinishCodeOper.text = '<li>If you don\'t understand binary trees now, check another branches.</li><li>Also, there is one interesting <a href="http://cslibrary.stanford.edu/110/BinaryTrees.pdf">book</a> about binary trees with algoritmics and exercises written on C++ and Java</li>';
 
 	var FinishOperation = new Node('Recommended recourse');
 	FinishOperation.text = 'Now you have base knowledges about binary trees, so I recommend you this <a href="http://shop.oreilly.com/product/9781593275846.do?green=C70CF1AB-62FF-5C12-AF31-47977D1CB293&intcmp=af-mybuy-9781593275846.IP">book</a>, and this <a href="http://shop.oreilly.com/product/0636920029557.do">book</a>, and <a href="http://cslibrary.stanford.edu/110/BinaryTrees.pdf">this</a>.';
@@ -56,7 +56,7 @@
 
 	var OperationRec = new Node('Binary trees operations');
 	OperationRec.text = '<li>All operations in binary trees are recursive implemented, cause we rarely know depth of tree and inner tree structure</li>';
-	OperationRec.text += '<ul>In work you will use three operations: <li>Insert Node in tree</li><li>Delete Node from tree</li><li>Search for Node in tree</li>\n';
+	OperationRec.text += '<ul>In work you will use three operations: <li>Insert Node in tree</li><li>Delete Node from tree</li><li>Search for Node in tree</li></ul>\n';
 	OperationRec.text += '<li>At first, create object Node, and method Insert, where node - node of tree that will be deleted:</li><pre><code>this.insert = function(node) {\n if(!this.leftNode) {\n  this.leftNode = node\n }\n else if(!this.rightNode) {\n   this.rightNode = node\n }\n else {\n  insert(this.leftNode)\n  insert(this.rightNode)\n } \n}</code></pre>';
 	OperationRec.text += '<li>We can insert node to current position with Node\'s method insertCurr </li><pre><code> this.insertCurr = function(node, currentNode) {\n  if(this.leftNode.value === currentNode.value) {\n    this.leftNode = currentNode \n  }\n  else if(this.rightNode.value = currentNode.value) {\n   this.rightNode = currentNode\n  }\n  else {\n   insertCurr(this.leftNode)\n   insertCurr(this.rightNode)\n  } \n} </code></pre>';
 	OperationRec.rightNode = DeleteRec;
@@ -82,7 +82,7 @@
 	TerminNode.rightNode = TypeNode;
 
 
-	var root = new Node('Start', 'You\'re programmer and don\'t know about binary trees?<li>Hint: left branch is easier.</li>');
+	var root = new Node('Start', 'You\'re programmer and don\'t know binary Trees? Anyway you must know it.<li>Hint: left branch is easier.</li>');
 	root.rightNode = TerminNode;
 	root.leftNode = RecTerminNode;
 
@@ -127,11 +127,17 @@
 	}
 
 	function parseTemplate(node, element) {
+		info.className = 'five columns'
 		var circles = document.querySelectorAll('.circle');
 		for (var i = 0; i < circles.length; i++) {
 			circles[i].style.backgroundColor = '#222';
 		}
-
+		info.style.opacity = '0';
+		setTimeout(function() {
+			info.className = 'five columns active'
+			info.style.opacity = '1'
+		}, 100);
+		element.className = 'circle active';
 		element.style.backgroundColor = 'red';
 		paragNode.innerHTML = node.parag;
 		textNode.innerHTML = node.text;
